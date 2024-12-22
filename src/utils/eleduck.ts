@@ -34,6 +34,5 @@ export async function collectData(
     scope,
   );
 
-  console.log(items[1]);
   return items;
 }

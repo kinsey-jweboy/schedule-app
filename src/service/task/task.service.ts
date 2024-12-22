@@ -8,7 +8,7 @@ import { notifyDuckPost } from 'utils/webhook';
 export class TaskService {
   private readonly logger = new Logger(TaskService.name);
 
-  @Cron(CronExpression.EVERY_30_SECONDS)
+  @Cron(CronExpression.EVERY_30_MINUTES)
   async collectDuckData() {
     const browser = await chromium.launch();
     const page = await browser.newPage();
