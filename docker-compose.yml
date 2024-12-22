@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  nest-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nest-app
+    ports:
+      - '4000:4000'
+    depends_on:
+      - playwright
+    networks:
+      - app-network
+    environment:
+      PLAYWRIGHT_HOST: playwright # Playwright 服务的主机名
+
+  playwright:
+    image: mcr.microsoft.com/playwright:v1.49.1-noble
+    container_name: playwright
+    networks:
+      - app-network
+    entrypoint: ['tail', '-f', '/dev/null'] # 持续运行，等待被调用
+
+networks:
+  app-network:
+    driver: bridge
