@@ -10,11 +10,10 @@ export const notifyDuckPost = (data: any) => {
       content: {
         post: {
           zh_cn: {
-            title: '电鸭职位订阅',
             content: [
               data.map((item) => {
                 return {
-                  text: `${item.scope}\n${item.title}，详情点击 ${item.url}\n`,
+                  text: `${item.title}，详情点击 ${item.url}\n`,
                   tag: 'text',
                 };
               }),

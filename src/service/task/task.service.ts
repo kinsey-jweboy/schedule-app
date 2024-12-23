@@ -13,28 +13,27 @@ export class TaskService {
     const browser = await chromium.launch();
     const page = await browser.newPage();
 
-    const backendItems = await collectData(
-      page,
-      'backend',
-      'https://eleduck.com/search?keyword=java',
-    );
-    const frontEndItems = await collectData(
-      page,
-      'frontend',
-      'https://eleduck.com/search?keyword=%E5%89%8D%E7%AB%AF',
-    );
+    // const frontEndItems = await collectData(
+    //   page,
+    //   'frontend',
+    //   'https://eleduck.com/',
+    // );
 
     // 获取最新一条的数据
-    const backend = backendItems[0];
-    const frontend = frontEndItems[0];
+    // const backend = backendItems[0];
+    // const frontend = frontEndItems[0];
+
+    // console.log(backendItems);
+
+    const items = await collectData(page);
+
+    // log 记录
+    this.logger.log(`已发送 ${items.length} 条`);
 
     // 关闭浏览器
     await browser.close();
 
-    // log 记录
-    this.logger.log({ frontend, backend });
-
     // 飞书通知
-    await notifyDuckPost([frontend, backend]);
+    await notifyDuckPost(items);
   }
 }
