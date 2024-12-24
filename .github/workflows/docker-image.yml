@@ -56,6 +56,6 @@ jobs:
           -d '{
             "msg_type": "text",
             "content": {
-              "text": "Docker image '${{ env.PROJECT_NAME }}' has been successfully pushed to Docker Hub with version '${{ env.VERSION }}'."
+              "text": "['${{ env.PROJECT_NAME }}:${{ env.VERSION }}'] has been successfully pushed to Docker Hub."
             }
           }'
