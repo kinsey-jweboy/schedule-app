@@ -37,7 +37,9 @@ export async function collectData(
   // return items;
 
   // 等待页面加载完成
-  await page.goto('https://eleduck.com/categories/5', { waitUntil: 'load' });
+  await page.goto('https://eleduck.com/categories/5?sort=new', {
+    waitUntil: 'load',
+  });
 
   // 等待列表在页面中显示
   await page.waitForSelector('.post-item', { state: 'visible' });
