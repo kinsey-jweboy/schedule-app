@@ -47,3 +47,15 @@ jobs:
       # 推送镜像
       - name: Push the Docker image
         run: docker push ${{env.HOST}}/${{ env.PROJECT_NAME }}:${{ env.VERSION }}
+
+      # 飞书通知
+      - name: Trigger feishu webhook
+        run: |
+          curl -X POST ${{ secrets.FEISHU_WEBHOOK_URL }} \
+          -H 'Content-Type: application/json' \
+          -d '{
+            "msg_type": "text",
+            "content": {
+              "text": "Docker image '${{ env.PROJECT_NAME }}' has been successfully pushed to Docker Hub with version '${{ env.VERSION }}'."
+            }
+          }'
