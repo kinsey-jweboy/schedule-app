@@ -55,5 +55,5 @@ export async function collectData(
     }),
   );
 
-  return items;
+  return items.reverse();
 }
